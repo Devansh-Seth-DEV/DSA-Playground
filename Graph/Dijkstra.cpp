@@ -21,14 +21,16 @@ vector<int> dijkstra(const vector<vector<pair<int, int>>>& adj,
 
         for(const auto& node: adj[u]) {
             int v = node.first, w = node.second;
-            int d = wt + w;
+            int d = wt + w; // total distance from (src --> u) + (u --> v)
                 
             if (d<distance[v]) {
-                    // if distance[v] is already not INF
-                // then its garanteed that its pair is present in minHeap
-                // but now we get even more shorter path 
-                // so we'll remove the greater path from the minHeap so that we'll
-                // not process that path in future because it'll give greater value
+                /* Why this check ?
+                   if distance[v] is not INFINITY that means
+                   {distance[v], v} is present in minHeap
+                   but now we get even more shorter path i.e {d, v}
+                   so we'll remove the greater path from the minHeap so that we'll
+                   not process that path in future because it'll give greater values
+                */
                 if (distance[v] != INT_MAX)
                     minHeap.erase({distance[v], v});
                 distance[v] = d;
