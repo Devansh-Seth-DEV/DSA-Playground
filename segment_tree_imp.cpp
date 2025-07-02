@@ -3,22 +3,19 @@ using namespace std;
 
 class SegmentTree {
 private:
-    struct Node {
-        int data;
-        bool hasValue = false;
-    };
-    
-    vector<Node> segTree;
+    vector<int> segTree;
     int items;
     int identityElement = 0;
+    long long maxUsedIndex = 0;
     using OperateFunc = std::function<int(const int&, const int&)>;
     OperateFunc operate = [](const int& a, const int& b) { return a + b; };
     
     
     int build(const int i, const int low, const int high, const vector<int>& array) {
+        maxUsedIndex = max(maxUsedIndex, (long long) i);
+        
         if (low==high) {
-            segTree[i].data = array[low];
-            segTree[i].hasValue = true;
+            segTree[i] = array[low];
             return array[low];
         }
         
@@ -29,14 +26,13 @@ private:
         int leftChildVal = build(leftChildAt, low, mid, array);
         int rightChildVal = build(rightChildAt, mid+1, high, array);
         
-        segTree[i].data = operate(leftChildVal, rightChildVal);
-        segTree[i].hasValue = true;
-        return segTree[i].data;
+        segTree[i] = operate(leftChildVal, rightChildVal);
+        return segTree[i];
     }
     
     void updateSegTree(const int idx, const int newVal, const int i, const int low, const int high) {
         if (low == high) {
-            segTree[i].data = newVal;
+            segTree[i] = newVal;
             return;
         }
         
@@ -49,9 +45,9 @@ private:
         else
             updateSegTree(idx, newVal, rightChildAt, mid+1, high);
         
-        int leftChildVal = segTree[leftChildAt].data;
-        int rightChildVal = segTree[rightChildAt].data;
-        segTree[i].data = operate(leftChildVal, rightChildVal);
+        int leftChildVal = segTree[leftChildAt];
+        int rightChildVal = segTree[rightChildAt];
+        segTree[i] = operate(leftChildVal, rightChildVal);
     }
     
     int queryRange(const int start, const int end, const int i, const int low, const int high) {
@@ -59,7 +55,7 @@ private:
             return identityElement;
         
         if (low >= start && high <= end)
-            return segTree[i].data;
+            return segTree[i];
         
         int leftChildAt = (i<<1) + 1;
         int rightChildAt = leftChildAt+1;
@@ -95,10 +91,9 @@ public:
         return queryRange(i, j, 0, 0, items-1);
     }
     
-    void traverse(const bool showEmptyCell = false) {
-        for(const auto& node: segTree) {
-            if (node.hasValue) cout << node.data << " ";
-            if (showEmptyCell) cout << "[] ";
+    void print() {
+        for(long long i=0; i<maxUsedIndex; i++) {
+            cout << segTree[i] << " ";
         }
         cout << "\n";
     }
@@ -106,13 +101,9 @@ public:
 
 int main() {
 	vector<int> array = {3, 1, 2, 7, 2, 1, 2, 3};
-	SegmentTree segTree(array, 
-			[](const int& a, const int& b) {
-	    			return gcd(a, b);
-			},
-			0 /* identity element */ );
+	SegmentTree segTree(array);
 
-    segTree.traverse();
+    segTree.print();
     
     cout << segTree.query(2, 6) << "\n";
     
