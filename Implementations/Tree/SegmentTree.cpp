@@ -272,6 +272,14 @@ public:
         return segTree[i];
     }
     
+    T getIdentity() const {
+        return identity;
+    }
+    
+    bool isIdentity(const T& idEle) {
+        return idEle == identity;
+    }
+    
     T query(const long long i, const long long j) const {
         return queryRange(i, j, 0, 0, arraySize-1, levels);
     }
