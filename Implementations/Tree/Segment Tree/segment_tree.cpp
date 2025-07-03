@@ -1,28 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename T = int>
+template <typename T = int, typename U = int>
 class SegmentTree {
 public:
-    using OperateFunc = function<T(const T&, const T&, const int)>;
+    using CombineFunction = function<T(const T&, const T&, const int)>;
+    using TransformFunction = function<T(const U&)>;
     
 private:
     vector<T> segTree;
-    T* arrayPtr = nullptr;
+    U* arrayPtr = nullptr;
     int levels = 0;
     
     long long arraySize = 0, maxUsedIndex = 0;
     T identity;
-    OperateFunc operate;
+    CombineFunction combine;
+    TransformFunction transform;
                             
-    void init(T* array, long long size) {
+    void init(U* array, long long size) {
         arrayPtr = array;
         arraySize = size;
         segTree.resize(arraySize << 2, identity);
         build(0, 0, arraySize - 1, levels);
     }
     
-    void init(vector<T>& array) {
+    void init(vector<U>& array) {
         init(array.data(), array.size());
     }
 
@@ -32,7 +34,7 @@ private:
         maxUsedIndex = max(maxUsedIndex, i);
         
         if (low==high) {
-            segTree[i] = arrayPtr[low];
+            segTree[i] = transform(arrayPtr[low]);
             return segTree[i];
         }
         
@@ -43,16 +45,16 @@ private:
         T leftVal = build(left, low, mid, level-1);
         T rightVal = build(right, mid+1, high, level-1);
         
-        segTree[i] = operate(leftVal, rightVal, level);
+        segTree[i] = combine(leftVal, rightVal, level);
         return segTree[i];
     }
     
-    void updateSegTree(const long long idx, const T newVal,
+    void updateSegTree(const long long idx, const U newVal,
                     const long long i,
                     const long long low, const long long high,
                     const int level) {
         if (low == high) {
-            segTree[i] = newVal;
+            segTree[i] = transform(newVal);
             arrayPtr[idx] = newVal;
             return;
         }
@@ -68,7 +70,7 @@ private:
         
         T leftVal = segTree[left];
         T rightVal = segTree[right];
-        segTree[i] = operate(leftVal, rightVal, level);
+        segTree[i] = combine(leftVal, rightVal, level);
     }
     
     T queryRange(const long long l, const long long r,
@@ -87,30 +89,42 @@ private:
         
         T leftVal = queryRange(l, r, left, low, mid, level-1);
         T rightVal = queryRange(l, r, right, mid+1, high, level-1);
-        T val = operate(leftVal, rightVal, level);
+        T val = combine(leftVal, rightVal, level);
         return val;
     }
     
     
 public:
     
-    SegmentTree(T array[], const long long N,
-                OperateFunc op = [](const T& a, const T& b,
-                                        const int level) { return a+b; },
-                T idEle = 0) :  levels((int) ceil(log2(N))),
-                                operate(op),
-                                identity(idEle)
+    SegmentTree(U array[], const long long N,
+                CombineFunction op = [](const T& a, const T& b,
+                                    const int level) -> T {
+                    return a+b;
+                },
+                T idEle = 0,
+                TransformFunction tf = [](const U& a) -> T {
+                    return a;
+                }) :    levels((int) ceil(log2(N))),
+                        combine(op),
+                        identity(idEle),
+                        transform(tf)
     { init(array, N); }
     
-    SegmentTree(vector<T>& array,
-                OperateFunc op = [](const T& a, const T& b,
-                                        const int level) { return a+b; },
-                T idEle = 0) :  levels((int) ceil(log2(array.size()))),
-                                operate(op),
-                                identity(idEle)
+    SegmentTree(vector<U>& array,
+                CombineFunction op = [](const T& a, const T& b,
+                                    const int level) -> T {
+                    return a+b;
+                },
+                T idEle = 0,
+                TransformFunction tf = [](const U& a) -> T {
+                    return a;
+                }) :    levels((int) ceil(log2(array.size()))),
+                        combine(op),
+                        identity(idEle),
+                        transform(tf)
     { init(array); }
     
-    void update(const long long i, const T newVal) {
+    void update(const long long i, const U newVal) {
         updateSegTree(i, newVal, 0, 0, arraySize-1, levels);
     }
     
@@ -133,8 +147,8 @@ public:
     bool isIdentity(const T& idEle,
                     function<bool(const T&, const T&)> isEqual = [](const T& a,
                                                                     const T& b) -> bool {
-                                                                        return a == b;
-                                                                    }) const {
+                        return a == b;
+                    }) const {
         return isEqual(idEle, identity);
     }
     
@@ -142,7 +156,7 @@ public:
         return queryRange(i, j, 0, 0, arraySize-1, levels);
     }
     
-    friend ostream& operator<<(ostream& os, const SegmentTree<T>& st) {
+    friend ostream& operator<<(ostream& os, const SegmentTree<T,U>& st) {
         for(long long i=0; i<=st.maxUsedIndex; i++)
             os << st.segTree[i] << " ";
         return os;
