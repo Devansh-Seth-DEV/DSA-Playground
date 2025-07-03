@@ -2,14 +2,14 @@
 using namespace std;
 
 /**
- * Header files to include
+ * Header files to include for 'SegmentTree'
  * <iostream>   for std::ostream, std::cout
  * <vector>     for std::vector
  * <functional> for std::function
  * <algorithm>  for std::max
  */
 
-template <typename T = int, U = vector<int>>
+template <typename T = int>
 class SegmentTree {
 public:
     using OperateFunc = function<T(const T&, const T&, const int)>;
@@ -22,17 +22,17 @@ private:
     T identity;
     OperateFunc operate;
                             
-    void init(const U* array, long long size) {
+    void init(const T* array, long long size) {
         arraySize = size;
         segTree.resize(arraySize << 2, identity);
         build(0, 0, arraySize - 1, array, levels);
     }
     
-    void init(const vector<U>& array) {
+    void init(const vector<T>& array) {
         init(array.data(), array.size());
     }
     
-    void init(initializer_list<U> list) {
+    void init(initializer_list<T> list) {
         init(list.begin(), list.size());
     }
 
@@ -43,7 +43,7 @@ private:
         maxUsedIndex = max(maxUsedIndex, i);
         
         if (low==high) {
-            segTree[i] = operate(array[low], identity);
+            segTree[i] = array[low];
             return segTree[i];
         }
         
@@ -104,7 +104,7 @@ private:
     
 public:
     
-    SegmentTree(const U array[], const long long N,
+    SegmentTree(const T array[], const long long N,
                 OperateFunc _operate = [](const T& a, const T& b,
                                         const int level) { return a+b; },
                 T idEle = 0) :  levels((int) ceil(log2(N))),
@@ -112,7 +112,7 @@ public:
                                 identity(idEle)
     { init(array, N); }
     
-    SegmentTree(const vector<U>& array,
+    SegmentTree(const vector<T>& array,
                 OperateFunc _operate = [](const T& a, const T& b,
                                         const int level) { return a+b; },
                 T idEle = 0) :  levels((int) ceil(log2(array.size()))),
@@ -120,7 +120,7 @@ public:
                                 identity(idEle)
     { init(array); }
     
-    SegmentTree(initializer_list<U> list,
+    SegmentTree(initializer_list<T> list,
                 OperateFunc _operate = [](const T& a, const T& b,
                             const int level) { return a+b; },
                 T idEle = 0) :  levels((int) ceil(log2(list.size()))),
@@ -148,20 +148,12 @@ public:
         return queryRange(i, j, 0, 0, arraySize-1, levels);
     }
     
-    friend ostream& operator<<(ostream& os, const SegmentTree& st) {
+    friend ostream& operator<<(ostream& os, const SegmentTree<T>& st) {
         for(long long i=0; i<=st.maxUsedIndex; i++)
             os << st.segTree[i] << " ";
         return os;
     }
 };
-
-void printSegTree(SegmentTree<vector<int>>& st) {
-    for(int i=0; i<=st.getMaxUsedIndex(); i++) {
-        auto node = st.get(i);
-        cout << "{" << node[0] << ", " << node[1] << "} ";
-    }
-    cout << "\n";
-}
 
 int main() {
     ios::sync_with_stdio(false);
@@ -171,18 +163,18 @@ int main() {
     cin >> n >> q;
     
     const int N = n;
-	vector<int> array(N);
-	for(auto& a: array) cin >> a;
+	vector<vector<int>> array(N);
+	for(int i=0; i<N; i++) {
+	    int a; cin >> a;
+	    array[i] = {a, a};
+	}
 	
-	SegmentTree<vector<int>, int> segTree(array,
+	SegmentTree<vector<int>> segTree(array,
 	                            [](const vector<int>& a, const vector<int>& b,
 	                               const int level) -> vector<int> {
 	                                   return { min(a[0], b[0]), max(a[1], b[1]) };
 	                            }, {INT_MAX, INT_MIN});
-    
-    printSegTree(segTree);
-    cout << "\n";
-    
+
 	while(q--) {
 	    int type, a, b;
 	    cin >> type >> a >> b;
