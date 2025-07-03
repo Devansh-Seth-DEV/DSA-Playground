@@ -16,19 +16,26 @@ private:
     int levels = 0;
     
     long long arraySize = 0, maxUsedIndex = 0;
-    U identity = 0;
-    OperateFunc operate = [](const T& a, const T& b,
-                            const int level) { return a+b; };
-    
-    void init(const vector<U>& array) {
-        arraySize = array.size();
+    U identity;
+    OperateFunc operate;
+                            
+    void init(const U* array, long long size) {
+        arraySize = size;
         segTree.resize(arraySize << 2, identity);
         build(0, 0, arraySize - 1, array, levels);
+    }
+    
+    void init(const vector<U>& array) {
+        init(array.data(), array.size());
+    }
+    
+    void init(initializer_list<U> list) {
+        init(list.begin(), list.size());
     }
 
     T build(const long long i,
             const long long low, const long long high,
-            const vector<U>& array,
+            const U* array,
             const int level) {
         maxUsedIndex = max(maxUsedIndex, i);
         
@@ -93,15 +100,30 @@ private:
     
     
 public:
-    SegmentTree(const vector<U>& array) : levels(__builtin_ctz((int)array.size()))
-    { init(array); }
+    
+    SegmentTree(const U array[], const long long N,
+                OperateFunc _operate = [](const T& a, const T& b,
+                            const int level) { return a+b; },
+                T idEle = 0) :  levels((int) ceil(log2(N))),
+                                operate(_operate),
+                                identity(idEle)
+    { init(array, N); }
     
     SegmentTree(const vector<U>& array,
-                OperateFunc _operate,
-                T idEle) :  levels(__builtin_ctz((int)array.size())),
-                            operate(_operate),
-                            identity(idEle)
+                OperateFunc _operate = [](const T& a, const T& b,
+                            const int level) { return a+b; },
+                T idEle = 0) :  levels((int) ceil(log2(array.size()))),
+                                operate(_operate),
+                                identity(idEle)
     { init(array); }
+    
+    SegmentTree(initializer_list<U> list,
+                OperateFunc _operate = [](const T& a, const T& b,
+                            const int level) { return a+b; },
+                T idEle = 0) :  levels((int) ceil(log2(list.size()))),
+                                operate(_operate),
+                                identity(idEle)
+    { init(list); }
     
     void update(const long long i, const T newVal) {
         updateSegTree(i, newVal, 0, 0, arraySize-1, levels);
