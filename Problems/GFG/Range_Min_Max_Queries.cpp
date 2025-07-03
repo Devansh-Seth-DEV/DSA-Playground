@@ -1,14 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-/**
- * Header files to include for 'SegmentTree'
- * <iostream>   for std::ostream, std::cout
- * <vector>     for std::vector
- * <functional> for std::function
- * <algorithm>  for std::max
- */
-
 template <typename T = int>
 class SegmentTree {
 public:
@@ -16,34 +8,31 @@ public:
     
 private:
     vector<T> segTree;
+    T* arrayPtr = nullptr;
     int levels = 0;
     
     long long arraySize = 0, maxUsedIndex = 0;
     T identity;
     OperateFunc operate;
                             
-    void init(const T* array, long long size) {
+    void init(T* array, long long size) {
+        arrayPtr = array;
         arraySize = size;
         segTree.resize(arraySize << 2, identity);
-        build(0, 0, arraySize - 1, array, levels);
+        build(0, 0, arraySize - 1, levels);
     }
     
-    void init(const vector<T>& array) {
+    void init(vector<T>& array) {
         init(array.data(), array.size());
-    }
-    
-    void init(initializer_list<T> list) {
-        init(list.begin(), list.size());
     }
 
     T build(const long long i,
             const long long low, const long long high,
-            const T* array,
             const int level) {
         maxUsedIndex = max(maxUsedIndex, i);
         
         if (low==high) {
-            segTree[i] = array[low];
+            segTree[i] = arrayPtr[low];
             return segTree[i];
         }
         
@@ -51,8 +40,8 @@ private:
         long long right = left+1;
         long long mid = low + ((high-low)>>1);
         
-        T leftVal = build(left, low, mid, array, level-1);
-        T rightVal = build(right, mid+1, high, array, level-1);
+        T leftVal = build(left, low, mid, level-1);
+        T rightVal = build(right, mid+1, high, level-1);
         
         segTree[i] = operate(leftVal, rightVal, level);
         return segTree[i];
@@ -64,6 +53,7 @@ private:
                     const int level) {
         if (low == high) {
             segTree[i] = newVal;
+            arrayPtr[idx] = newVal;
             return;
         }
         
@@ -84,7 +74,7 @@ private:
     T queryRange(const long long l, const long long r,
                 const long long i,
                 const long long low, const long long high,
-                const int level) {
+                const int level) const {
         if (high < l || r < low)
             return identity;
         
@@ -104,29 +94,21 @@ private:
     
 public:
     
-    SegmentTree(const T array[], const long long N,
-                OperateFunc _operate = [](const T& a, const T& b,
+    SegmentTree(T array[], const long long N,
+                OperateFunc op = [](const T& a, const T& b,
                                         const int level) { return a+b; },
                 T idEle = 0) :  levels((int) ceil(log2(N))),
-                                operate(_operate),
+                                operate(op),
                                 identity(idEle)
     { init(array, N); }
     
-    SegmentTree(const vector<T>& array,
-                OperateFunc _operate = [](const T& a, const T& b,
+    SegmentTree(vector<T>& array,
+                OperateFunc op = [](const T& a, const T& b,
                                         const int level) { return a+b; },
                 T idEle = 0) :  levels((int) ceil(log2(array.size()))),
-                                operate(_operate),
+                                operate(op),
                                 identity(idEle)
     { init(array); }
-    
-    SegmentTree(initializer_list<T> list,
-                OperateFunc _operate = [](const T& a, const T& b,
-                            const int level) { return a+b; },
-                T idEle = 0) :  levels((int) ceil(log2(list.size()))),
-                                operate(_operate),
-                                identity(idEle)
-    { init(list); }
     
     void update(const long long i, const T newVal) {
         updateSegTree(i, newVal, 0, 0, arraySize-1, levels);
@@ -140,11 +122,11 @@ public:
         return maxUsedIndex;
     }
     
-    T& get(const long long i) {
+    const T& getNode(const long long i) const {
         return segTree[i];
     }
     
-    T query(const long long i, const long long j) {
+    T query(const long long i, const long long j) const {
         return queryRange(i, j, 0, 0, arraySize-1, levels);
     }
     
