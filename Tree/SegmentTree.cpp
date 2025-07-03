@@ -232,7 +232,7 @@ public:
         return maxUsedIndex;
     }
     
-    const T& get(const long long i) const {
+    const T& getNode(const long long i) const {
         return segTree[i];
     }
     
