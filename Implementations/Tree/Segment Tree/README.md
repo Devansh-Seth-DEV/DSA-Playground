@@ -11,6 +11,18 @@
 
 <br>
 
+### 📦 Included Header Files
+```cpp
+#include <iostream>    // For std::cout, std::ostream
+#include <vector>      // For std::vector
+#include <functional>  // For std::function (custom combine operations)
+#include <algorithm>   // For std::min, std::max
+#include <cmath>       // For std::ceil, std::log2
+#include <climits>     // For INT_MAX, INT_MIN (identity values)
+```
+
+<br>
+
 ## 🚀 How to Create a Segment Tree
 You can create a segment tree for any associative operation (like sum, min, max) by specifying:
 
