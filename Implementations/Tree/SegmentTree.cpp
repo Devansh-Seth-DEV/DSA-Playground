@@ -1,3 +1,6 @@
+#include <bits/stdc++.h>
+using namespace std;
+
 /**
  * Header files to include
  * <iostream>   for std::ostream, std::cout
@@ -109,6 +112,39 @@
     '''
         segTree.update(2, {10, 10});
     '''
+ *
+ * Level-Aware Operations (Advanced Feature)
+ * 
+ * The combination function in this segment tree template takes an additional parameter level, which represents the depth of the current node in the segment tree.
+ * This allows you to create level-dependent logic when combining nodes. 
+ * 
+ * Function signature:
+
+    '''
+        [](const T& a, const T& b, const int level) -> T {
+            // Combine logic here
+        }
+    '''
+ * - a, b: child nodes to combine
+ * - level: distance from the leaves (0 = leaf level, increases upward)
+ * 
+ * Example: Alternating XOR and OR by Level
+ * Suppose you're building a segment tree for a problem like Xenia and Bit Operations (Codeforces), where:
+ * - The operation alternates between OR and XOR at each level of the tree.
+ * - Starting from the leaves (level 0), the operations go like:
+ *      - Level 0: XOR
+ *      - Level 1: OR
+ *      - Level 2: XOR ....
+ * - Then the combination function becomes:
+    '''
+        SegmentTree<int>::OperateFunc bitwiseAlt = [](const int& a, const int& b, const int level) {
+            return (level & 1) ? (a | b) : (a ^ b);
+        };
+    '''
+ * - level & 1 checks if the level is odd (returns 1 for odd, 0 for even)
+ * - Odd levels → a | b
+ * - Even levels → a ^ b
+ * 
  */
 
 template <typename T = int>
