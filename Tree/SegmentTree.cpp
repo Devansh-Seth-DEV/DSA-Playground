@@ -6,94 +6,94 @@
  * <algorithm>  for std::max
  */
 
+template <typename T = int, typename U = int>
 class SegmentTree {
 private:
-    vector<int> segTree;
+    vector<T> segTree;
     
-    int arraySize = 0;
-    int identity = 0;
-    long long maxUsedIndex = 0;
+    long long arraySize = 0, maxUsedIndex = 0;
+    T identity = 0;
     
-    using OperateFunc = function<int(const int&, const int&)>;
-    OperateFunc operate = [](const int& a, const int& b) { return a + b; };
+    using OperateFunc = function<T(const T&, const T&)>;
+    OperateFunc operate = [](const T& a, const T& b) { return a + b; };
     
-    void init(const vector<int>& array) {
+    void init(const vector<U>& array) {
         arraySize = array.size();
         segTree.resize(arraySize << 2, identity);
         build(0, 0, arraySize - 1, array);
     }
 
     
-    int build(const int i, const int low, const int high, const vector<int>& array) {
-        maxUsedIndex = max(maxUsedIndex, (long long) i);
+    T build(const long long i, const long long low, const long long high, const vector<U>& array) {
+        maxUsedIndex = max(maxUsedIndex, i);
         
         if (low==high) {
-            segTree[i] = array[low];
-            return array[low];
+            segTree[i] = (T) array[low];
+            return segTree[i];
         }
         
-        int left = (i<<1) + 1;
-        int right = left+1;
-        int mid = low + ((high-low)>>1);
+        long long left = (i<<1) + 1;
+        long long right = left+1;
+        long long mid = low + ((high-low)>>1);
         
-        int leftVal = build(left, low, mid, array);
-        int rightVal = build(right, mid+1, high, array);
+        T leftVal = build(left, low, mid, array);
+        T rightVal = build(right, mid+1, high, array);
         
         segTree[i] = operate(leftVal, rightVal);
         return segTree[i];
     }
     
-    void updateSegTree(const int idx, const int newVal, const int i, const int low, const int high) {
+    void updateSegTree(const long long idx, const T newVal, const long long i, const long long low, const long long high) {
         if (low == high) {
             segTree[i] = newVal;
             return;
         }
         
-        int left = (i<<1) + 1;
-        int right = left+1;
-        int mid = low + ((high-low)>>1);
+        long long left = (i<<1) + 1;
+        long long right = left+1;
+        long long mid = low + ((high-low)>>1);
         
         if (idx <= mid)
             updateSegTree(idx, newVal, left, low, mid);
         else
             updateSegTree(idx, newVal, right, mid+1, high);
         
-        int leftVal = segTree[left];
-        int rightVal = segTree[right];
+        T leftVal = segTree[left];
+        T rightVal = segTree[right];
         segTree[i] = operate(leftVal, rightVal);
     }
     
-    int queryRange(const int l, const int r, const int i, const int low, const int high) {
+    T queryRange(const long long l, const long long r, const long long i, const long long low, const long long high) {
         if (high < l || r < low)
             return identity;
         
         if (l <= low && high <= r)
             return segTree[i];
         
-        int left = (i<<1) + 1;
-        int right = left+1;
-        int mid = low + ((high-low)>>1);
+        long long left = (i<<1) + 1;
+        long long right = left+1;
+        long long mid = low + ((high-low)>>1);
         
-        int leftVal = queryRange(l, r, left, low, mid);
-        int rightVal = queryRange(l, r, right, mid+1, high);
-        int val = operate(leftVal, rightVal);
+        T leftVal = queryRange(l, r, left, low, mid);
+        T rightVal = queryRange(l, r, right, mid+1, high);
+        T val = operate(leftVal, rightVal);
         return val;
     }
     
     
 public:
-    SegmentTree(const vector<int>& array) { init(array); }
+    SegmentTree(const vector<U>& array) { init(array); }
     
-    SegmentTree(const vector<int>& array,
+    SegmentTree(const vector<U>& array,
                 OperateFunc _operate,
-                int idEle) : operate(_operate), identity(idEle)
+                T idEle) : operate(_operate), identity(idEle)
     { init(array); }
     
-    void update(const int i, const int newVal) {
+    void update(const long long i, const T newVal) {
         updateSegTree(i, newVal, 0, 0, arraySize-1);
     }
     
-    int query(const int i, const int j) {
+    T query(const long long i, const long long j) {
         return queryRange(i, j, 0, 0, arraySize-1);
     }
     
