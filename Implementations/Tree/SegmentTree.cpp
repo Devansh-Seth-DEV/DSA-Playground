@@ -276,7 +276,7 @@ public:
         return identity;
     }
     
-    bool isIdentity(const T& idEle) {
+    bool isIdentity(const T& idEle) const {
         return idEle == identity;
     }
     
