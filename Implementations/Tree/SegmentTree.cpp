@@ -276,8 +276,12 @@ public:
         return identity;
     }
     
-    bool isIdentity(const T& idEle) const {
-        return idEle == identity;
+    bool isIdentity(const T& idEle,
+                    function<bool(const T&, const T&)> isEqual = [](const T& a,
+                                                                    const T& b) -> bool {
+                                                                        return a == b;
+                                                                    }) const {
+        return isEqual(idEle, identity);
     }
     
     T query(const long long i, const long long j) const {
