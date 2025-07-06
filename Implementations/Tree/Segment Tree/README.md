@@ -159,7 +159,7 @@ You can build logic that depends on the depth (level) in the segment tree.
 ### ➕ Example: Alternating XOR and OR by Level
 Used in problems like Xenia and Bit Operations:
 ```cpp
-SegmentTree<int>::OperateFunc bitwiseAlt = [](const int& a,
+SegmentTree<int>::CombineFunction bitwiseAlt = [](const int& a,
                                             const int& b,
                                             const int level) {
     return (level & 1) ? (a | b) : (a ^ b);
