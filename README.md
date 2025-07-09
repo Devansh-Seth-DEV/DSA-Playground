@@ -10,6 +10,9 @@ This repository is a personal playground for practicing and implementing Data St
 ## 💡 Practice Problems (Code-Only)
 This folder contains my personal solutions to problems from platforms like:
 
+- Codeforces
+- CSES
+- SPOJ
 - LeetCode
 - GeeksforGeeks
 
