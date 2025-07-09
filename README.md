@@ -7,7 +7,7 @@ This repository is a personal playground for practicing and implementing Data St
 - ✅ Classic DSA Implementations
     - Segment Trees, Graph Algorithms, Trees, etc.
   
-## 💡 Practice Problems (Code-Only)
+## 💡 Practice Problems
 This folder contains my personal solutions to problems from platforms like:
 
 - Codeforces
