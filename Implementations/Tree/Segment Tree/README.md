@@ -87,7 +87,7 @@ You can create a segment tree for any associative operation (like sum, min, max)
 ### ➕ Example: Range Sum Segment Tree
 ```cpp
 vector<int> arr = {1, 2, 3, 4, 5};
-SegmentTree<int, int> segTree(arr);  // Builds a segment tree for range sum queries by default
+SegmentTree<int, int> st(arr);  // Builds a segment tree for range sum queries by default
 ```
 
 - Template type T=`int` and U=`int` indicates the type of nodes and elements in array respectively.
@@ -144,7 +144,7 @@ SegmentTree<vector<int>, int>::TransformFunction minMaxTransform = [](const int&
 
 ### 🏗 Step 5: Create the Segment Tree
 ```cpp
-SegmentTree<vector<int>, int> segTree(arr, minMaxCombine, identity, minMaxTransform);
+SegmentTree<vector<int>, int> st(arr, minMaxCombine, identity, minMaxTransform);
 ```
 
 - `T = vector<int>` → This is the node type stored in the segment tree.
@@ -159,12 +159,12 @@ Each element in the input is a plain integer, like 1, 2, 3, etc
 ### ✅ Query
 Get min and max in range [L, R] (0-based):
 ```cpp
-vector<int> result = segTree.query(L, R);
+vector<int> result = st.query(L, R);
 cout << "Min: " << result[0] << ", Max: " << result[1] << "\n";
 ```
 ### ➕ Example: Query in range [L = 0, R = 2]
 ```cpp
-vector<int> result = segTree.query(0, 2);
+vector<int> result = st.query(0, 2);
 cout << "Min: " << result[0] << ", Max: " << result[1] << "\n";
 ```
 #### Output
@@ -177,11 +177,11 @@ Min: 3, Max: 11
 ### 🔄 Update
 Update value at index idx to new value (must be of same type as `U`):
 ```cpp
-segTree.update(idx, newVal);
+st.update(idx, newVal);
 ```
 ### ➕ Example: Update index 3 to 17
 ```cpp
-segTree.update(3, 17);
+st.update(3, 17);
 ```
 #### Output 
 ```bash
