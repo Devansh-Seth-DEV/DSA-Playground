@@ -1,13 +1,63 @@
 # 📚 Segment Tree Template
 
 ## ✨ Features
-- Generic for any associative operation (sum, min, max, XOR, OR, etc.)
+- #### ✅ Generic & Type-Safe
+    - **Fully templated:** Works with any data type `T` (tree values) and `U` (original array values).
+    - Supports complex types like `pair`, `structs`, or even user-defined classes.
 
-- Level-aware operation support (e.g., alternating operations)
+- #### 🔁 Customizable Combine & Transform Functions
+    - Define your own logic for:
+        - Combining nodes (sum, min, max, GCD, XOR, etc.)
+        - Transforming leaf values from `U → T`
+        - **Example:** Segment Tree for finding `max` element in a range in array
+          
+          ```cpp
+          SegmentTree<int> st(arr, n,
+                            [](int a, int b, int lvl) { return std::max(a, b); },  // combine
+                            INT_MIN,                                               // identity
+                            [](int x) { return x; }                                // transform
+          );
+          ```
+          
+- #### 🧠 Identity Element Abstraction
+    - Identity value is fully customizable per use case.
+    - Enables algebraic monoid-based queries with safe default behavior.
+      
+- #### 📦 van Emde Boas (vEB) Layout
+    - Memory-efficient and cache-friendly layout (rare in typical segment tree code).
+    - Left and right children are placed optimally for CPU cache locality and performance.
+ 
+- #### 📐 Level-Aware Combine Logic
+    - The combine function receives an extra level parameter, representing the depth in the segment tree (0 = leaves, higher = closer to root).
+    - This enables context-sensitive behavior, such as:
+        - Weighted combining (e.g., different priority at each level)
+        - Level-based scoring or aggregation
+        - Debugging or instrumentation at different depths
+        - **Example:**
 
-- Custom identity elements
+          ```cpp
+          // Level-aware max that adds bonus for higher-level nodes
+          auto levelAwareMax = [](int a, int b, int level) {
+              return std::max(a, b) + level;
+          };
+        
+          SegmentTree<int> st(arr, n, levelAwareMax, 0);
+          ```
 
-- Supports composite types (like {min, max} in a node)
+- #### 🧱 Dual Initialization Support
+    - Construct from:
+        - Raw array (`T[]`)
+        - `std::vector<T>`
+     
+- #### 🧪 Debug-Friendly
+    - Overloaded `<<` operator for easy tree visualization in logs or output.
+
+- #### 🧰 Full Feature Set
+    - `query(l, r)`: Efficient range query in **O(log n)**
+    - `update(i, val)`: Point update with propagation
+    - `getVertex(i)`: Access internal segment tree node
+    - `getSize()` / `getLevels()`: Introspective utilities
+    - `isIdentity()`: Verify correctness of the identity element
 
 <br>
 
