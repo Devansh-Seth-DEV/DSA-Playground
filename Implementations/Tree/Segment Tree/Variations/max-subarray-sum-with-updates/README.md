@@ -104,7 +104,7 @@ Q operations of the form:
 1 -2 3 -1
 1 0 3
 2 1 5
-1 0 2
+1 0 3
 ```
 
 #### Output:
