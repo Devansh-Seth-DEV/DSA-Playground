@@ -44,8 +44,8 @@ bool isPlacementGood(int V, vector<vector<int>>& edges,
         adj[v].push_back(u);
     }
     
-    // visited denotes that city is protected by graph
-    // is visited[i] is false means city is not protected
+    // visited denotes that city is protected by guard
+    // visited[i] = false means city is not protected
     vector<bool> visited(V, false);
     for(auto& g: guards) {
         // if city is already protected that means
