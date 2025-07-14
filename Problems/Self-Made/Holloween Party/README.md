@@ -25,6 +25,7 @@ Find the **minimum number of dress changes** required to go from his **home (0, 
 ## Constraints
 - $1 ≤ t ≤ 15$
 - $1 ≤ n, m ≤ 1000$
+- $1 ≤ grid[i] ≤ 9$
 
 ## Limits
 - `Time Limit: 2 seconds (cpp)`
