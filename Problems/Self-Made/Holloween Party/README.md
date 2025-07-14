@@ -12,7 +12,7 @@
 
 ## 📝 Problem Description
 
-In the city of “Kam Kaj Nai”, people love partying daily, especially on Halloween. Torongo, the only sincere citizen, lives at cell `(0, 0)` and works at cell `(n–1, m–1)` in a rectangular grid city.
+In the city of **“Kam Kaj Nai”**, people love partying daily, especially on Halloween. **Torongo**, the only sincere citizen, lives at cell `(0, 0)` and works in office at cell `(n–1, m–1)` in a rectangular grid city.
 
 Each cell has a dress code (represented as a character), and Torongo can move to adjacent cells in 4 directions: up, down, left, right.
 
