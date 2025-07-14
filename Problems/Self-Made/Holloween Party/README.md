@@ -3,6 +3,7 @@
 ![Difficulty: Hard](https://img.shields.io/badge/Difficulty-Hard-red?style=for)
 
 ![Technique: 0–1 BFS](https://img.shields.io/badge/0–1%20BFS-blue?style=for)
+![Technique: Dijkstra](https://img.shields.io/badge/Dijkstra-blue?style=for)
 ![Concept: Shortest Path](https://img.shields.io/badge/Shortest%20Path-yellow?style=for)
 ![Category: Grid Path](https://img.shields.io/badge/Grid%20Path-lightgrey?style=for)
 ![Graph: Implicit](https://img.shields.io/badge/Graph-Implicit-brightgreen?style=for)
