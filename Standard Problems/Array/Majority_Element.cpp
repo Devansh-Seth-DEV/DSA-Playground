@@ -6,17 +6,17 @@ int majorityElement(vector<int>& arr) {
     // idea behind this is make pairs of elements which are different
     // by doing this at the end only 1 element remains which don't have paring
     // and that element is majority element
-    
-    int count=0, candidate=-1;
-    for(int i=0; i<arr.size(); i++) {
-        if (count==0) candidate = arr[i];
         
+    int count=0, candidate=-1;
+    for(int num: arr) {
+        if (count==0) candidate = num;
+            
         // adding count of same element
         // this will be used to make pairs with different elements
-        if (count == candidate) count++;
-        else count--; // removing the pairs of different elements
+        // if not same then remove one pair
+        count += (num == candidate) ? 1 : -1;
     }
-    
+        
     return candidate;
 }
 
