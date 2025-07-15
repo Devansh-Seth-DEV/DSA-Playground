@@ -47,6 +47,7 @@ grid[n-1]
 ```txt
 Case X: Y
 ```
+Where `X` is the test case number and `Y` is the **minimum number of dress changes** required.
 
 ---
 
