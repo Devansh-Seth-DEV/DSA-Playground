@@ -12,15 +12,15 @@
 
 ## 📝 Problem Description
 
-Festive season is going on in the city of **Kam kaj nai**. Though most of the people in the city of **kam kaj nai** aren’t serious about their work and their main motivation of living is do a party in every day. **Torongo** being most sincere person in the city of **kam kaj nai** never wants to take day off for this unnecessary parties. But he is also very kind never wants to hard anyone of the city of **kam kaj nai**.
+Festive season is going on in the city of **Kam kaj nai**. Though most of the people in the city of **kam kaj nai** aren’t serious about their work and their main motivation of living is do a party in every day. **Torongo** being most sincere person in the city of **kam kaj nai** never wants to take day off for this unnecessary parties. But he is also very kind and never wants to hurt anyone of the city of **kam kaj nai**.
 
-**Torongo’s** house located at cell `(0, 0)` in the gird wise representation of city of **kam kaj nai** and his office located at cell `(n–1, m–1)`. Inorder to go on cell to another cell torongo needs to visit one of 4 adjacent cell ( Right , Left , Up , Down ) from is current cell.
+**Torongo’s house** located at cell `(0, 0)` in the grid wise representation of city of **kam kaj nai** and his **office** located at cell `(n–1, m–1)`. Inorder to go on cell to another cell torongo needs to visit one of 4 adjacent cell ( Right , Left , Up , Down ) from is current cell.
 
 Today people of the city **kam kaj nai** celebrating **Holloween party** in their house so there is a dress code to attain the party . If currently torongo at `(x1, y1)` position and his next destination is `(x2, y2)` position then
 - If `DressCode(x1, y1) == DressCode(x2, y2)` torongo **can go** to `(x2, y2)` position without changing his dress.
 - If `DressCode(x1, y1) != DressCode(x2, y2)` torongo **can’t go** to `(x2, y2)` position without changing his dress.
   
-Find the **minimum number of dress changes** required to go from his **home (0, 0)** to his **office (n-1, m-1)**.
+Find the **minimum number of dress torongo need to change** to go his **office (n-1, m-1)** from his **home (0, 0)**.
 
 ## Constraints
 - $1 ≤ t ≤ 15$
