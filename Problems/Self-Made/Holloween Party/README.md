@@ -37,10 +37,10 @@ Find the **minimum number of dress changes** required to go from his **home (0, 
 ```txt
 t                      // Number of test cases
 n m                    // Grid dimensions
-grid[0]
 grid[1]
+grid[2]
 ...
-grid[n-1]
+grid[n]
 ```
 
 ## 📤 Output Format
