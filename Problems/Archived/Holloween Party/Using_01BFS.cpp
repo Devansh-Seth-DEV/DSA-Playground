@@ -32,8 +32,8 @@ int minTimesDressChange(vector<string>& city) {
     cost[0][0] = 0; // cost of u --> u is 0
     
     // core logic:
-    // 1. if Dress(i, j) == Dress(i', j') then the cost of travelling from (i, j) --> (i', j') is 0
-    // 2. if Dress(i, j) != Dress(i', j') then the cost of travelling from (i, j) --> (i', j') is 1
+    // 1. if DressCode(i, j) == DressCode(i', j') then the cost of travelling from (i, j) --> (i', j') is 0
+    // 2. if DressCode(i, j) != DressCode(i', j') then the cost of travelling from (i, j) --> (i', j') is 1
     // cost(i', j') = 1 denotes that we'll have to change the dress before moving to (i', j')
     // cost(i', j') = 0 denotes that we don't have to change the dress before moving to (i', j')
     
