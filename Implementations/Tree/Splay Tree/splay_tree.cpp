@@ -151,13 +151,28 @@ public:
         return nullptr;
     }
     
-    void erase(int key) {
-        // Step-1: Find the key and splay it to root
-        Node* x = find(key);
-        if (!x) return; // key not found
+    Node* top() {
+        return root;
+    }
+    
+    void pop() {
+        wipe(root);
+    }
+    
+    void popMin() {
+        Node* x = getMin(root);
+        wipe(x);
+    }
+    
+    void popMax() {
+        Node* x = getMax(root);
+        wipe(x);
+    }
+    
+    void wipe(Node* x) {
+        if (!x) return; // saftey
         
-        // Step-2: Since key is found, erase the key
-        //          also disconnect it from its childrens
+        // erase the key and disconnect it from its childrens
         Node* lchild = x->left;
         Node* rchild = x->right;
         
@@ -168,7 +183,7 @@ public:
         delete x; // saftey remove key after disconnecting childs
         x = nullptr; // avoid dangling pointer issue, good practice
         
-        // Step-3: Join the remaining subtree by following cases
+        // Join the remaining subtree by following cases
         // case1: remaining left subtree is not null in that case
         //      1. splay the max node in the left subtree to top
         //      2. attach remaining right subtree to the right of this max node(new root)
@@ -181,6 +196,21 @@ public:
             root->right = rchild;
             if(rchild) rchild->parent = root;
         } else root = rchild; // no left subtree so making right child as new root
+    }
+    
+    void erase(int key) {
+        // Step-1: Find the key and splay it to root
+        Node* x = find(key);
+
+        // Step-2: Since key is found, erase the key
+        //          also disconnect it from its childrens
+        
+        // Step-3: Join the remaining subtree by following cases
+        // case1: remaining left subtree is not null in that case
+        //      1. splay the max node in the left subtree to top
+        //      2. attach remaining right subtree to the right of this max node(new root)
+        // case2: no remaining left subtree, in this case just set root to right subtree
+        wipe(x); // Step 2 & 3 is done by wipe method
     }
     
     void clear() {
