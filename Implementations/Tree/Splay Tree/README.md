@@ -1,7 +1,16 @@
 # 🌲 Splay Tree
 > A self-adjusting binary search tree with guaranteed amortized efficiency
 
-This folder contains a complete C++ implementation of a **Splay Tree**, a type of binary search tree that automatically restructures itself on access, keeping recently accessed elements near the top. This behavior is particularly helpful in scenarios where certain elements are accessed more frequently than others.
+
+## 📚 What is a Splay Tree?
+
+A **Splay Tree** is a self-adjusting variant of a binary search tree. Whenever an element is accessed (via insertion, search, or deletion), it is moved to the root using a series of tree rotations:
+
+- **Zig**: A single rotation (if node’s parent is root)
+- **Zig-Zig**: Double rotation in same direction (grandparent–parent–child)
+- **Zig-Zag**: Double rotation in opposite direction
+
+This helps optimize access to frequently used elements and ensures **logarithmic amortized time** for operations.
 
 ---
 
@@ -16,17 +25,6 @@ This folder contains a complete C++ implementation of a **Splay Tree**, a type o
 
 <br>
 
-## 📚 What is a Splay Tree?
-
-A **Splay Tree** is a self-adjusting variant of a binary search tree. Whenever an element is accessed (via insertion, search, or deletion), it is moved to the root using a series of tree rotations:
-
-- **Zig**: A single rotation (if node’s parent is root)
-- **Zig-Zig**: Double rotation in same direction (grandparent–parent–child)
-- **Zig-Zag**: Double rotation in opposite direction
-
-This helps optimize access to frequently used elements and ensures **logarithmic amortized time** for operations.
-
-<br>
 
 ## 🧩 File Structure
 
