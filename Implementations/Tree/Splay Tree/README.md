@@ -72,7 +72,7 @@ tree.inorder();     // Output: 5 12 15 20 25 30 35
 
 | Method                             | Description                                                                                    |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `void insert(int key)`             | Inserts key and splays it to root                                                              |
+| `Node* insert(int key)`            | Inserts key and splays it to root; Returns a pointer to inserted node.                         |
 | `Node* find(int key)`              | Finds key and splays it; returns node if found, else `nullptr`                                 |
 | `void erase(int key)`              | Removes key if present and restructures tree                                                   |
 | `bool contains(int key)`           | Returns `true` if key exists (uses `peak`)                                                     |
