@@ -96,9 +96,10 @@ public:
         return RotationType::ZIG_ZAG_RIGHT_LEFT;
     }
     
-    void insert(int key) {
+    Node* insert(int key) {
         Node* x = bstInsert(key);
         splay(x);
+        return x;
     }
     
     bool empty() {
