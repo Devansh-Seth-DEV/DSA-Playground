@@ -160,13 +160,15 @@ public:
     }
     
     void popMin() {
-        Node* x = getMin(root);
-        wipe(x);
+        Node* x = getMin(root); // gets the node with minimal key
+        splay(x); // splay that minNode to top of tree
+        wipe(x); // deletes the minNode from the tree
     }
     
     void popMax() {
-        Node* x = getMax(root);
-        wipe(x);
+        Node* x = getMax(root); // gets the node with maximal key
+        splay(x); // splay that maxNode to top of tree
+        wipe(x); // deletes the maxNode from the tree
     }
     
     void wipe(Node* x) {
