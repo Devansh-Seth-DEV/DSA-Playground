@@ -1,4 +1,4 @@
-# 🌲 Splay Tree in C++
+# 🌲 Splay Tree
 > A self-adjusting binary search tree with guaranteed amortized efficiency
 
 This folder contains a complete C++ implementation of a **Splay Tree**, a type of binary search tree that automatically restructures itself on access, keeping recently accessed elements near the top. This behavior is particularly helpful in scenarios where certain elements are accessed more frequently than others.
