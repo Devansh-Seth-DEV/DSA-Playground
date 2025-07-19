@@ -76,6 +76,10 @@ tree.inorder();     // Output: 5 12 15 20 25 30 35
 | `bool contains(int key)`           | Returns `true` if key exists (uses `peak`)                                                     |
 | `bool empty()`                     | Returns `true` if tree is empty                                                                |
 | `pair<Node*, Node*> peak(int key)` | BST-style search **without splaying**; returns node (if found) and last accessed node (if not) |
+| `top()`                            | Returns the root node (top of the tree). Useful for heap-like access.                          |
+| `pop()`                            | Removes the root node and restructures the tree using splaying.                                |
+| `popMin()`                         | Removes the minimum key node from the tree using splaying.                                     |
+| `popMax()`                         | Removes the maximum key node from the tree using splaying.                                     |
 
 
 <br>
@@ -98,6 +102,7 @@ tree.inorder();     // Output: 5 12 15 20 25 30 35
 | `void clear()`                | Deletes all nodes and resets tree to empty |
 | `Node* getMin(Node* subroot)` | Returns min node in a given subtree        |
 | `Node* getMax(Node* subroot)` | Returns max node in a given subtree        |
+| `wipe(Node* x)`               | Deletes the specified node `x` from the tree and maintains tree structure. Requires `x` to be a valid node in the tree (e.g. from `find()`). Used internally by `pop()` and `erase()`. ⚠️ Advanced use only. |
 
 <br>
 
