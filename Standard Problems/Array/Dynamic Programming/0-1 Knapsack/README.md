@@ -29,7 +29,7 @@ $$
 ##
 
 ### 🔹 $C(i,W)$ - Cost function 
-The value contributed by item $i$, given remaining capacity $W$:
+The value contributed by item $i$, given capacity $W$:
 
 $$
   C(i, W) :=
