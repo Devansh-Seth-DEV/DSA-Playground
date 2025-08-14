@@ -71,7 +71,7 @@ $$
   \bar{V}(i, W) := V^* (i, W) \hspace{10pt} \text{once it has been evaluated}
 $$
 
-### 💡 $\chi(i, W)$ - Indicator function
+### ✅ $\chi(i, W)$ - Indicator function
 We define a boolean function $\chi(i, W)$ to track whether $\bar{V}(i, W)$ has already been computed:
 
 $$
