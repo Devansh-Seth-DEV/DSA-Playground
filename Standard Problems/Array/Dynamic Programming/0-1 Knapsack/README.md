@@ -1,12 +1,13 @@
 # 0-1 Knapsack Solution
 
 📝 **Given:**
+- **$n$** be the number of items.
 - **$W$** be the knapsack capacity.
 - **$val[i]$** be the value of item $i$.
 - **$wt[i]$** be the weight of item $i$.  
 
 where:
-  -  $2 \leq |val| = |wt| \leq 10^3$
+  -  $2 \leq n \leq 10^3$
   -  $1 \leq W \leq 10^3$
   -  $1 \leq val[i], wt[i] \leq 10^3$
 
@@ -17,13 +18,13 @@ where:
 The objective is to maximize total value:
 
 $$
-\text{maximize } \sum_{i=1}^{|val|} val[i] x_i
+\text{maximize } \sum_{i=1}^{n} val[i] x_i
 $$
 
 $$
 \begin{aligned}
 \text{such that: } &
-\sum_{i=1}^{|wt|} wt[i] x_i \le W, \quad x_i \in \lbrace 0, 1 \rbrace, \quad \forall i = 1,2,\dots,|wt|
+\sum_{i=1}^{n} wt[i] x_i \le W, \quad x_i \in \lbrace 0, 1 \rbrace, \quad \forall i = 1,2,\dots,n
 \end{aligned}
 $$
 
@@ -61,7 +62,7 @@ The maximum value obtainable using the first $i$ items and capacity $W$:
 $$
   V^* (i, W) :=
   \begin{cases}
-  0, & i = 0 \text{ or } W = 0 \\
+  0, & i = 0 \ \lor W = 0 \\
   \max\bigg(C(i, W) + V^* \Big(i-1, W'(i, W)\Big), \hspace{5pt} V^* (i, W) \bigg), & \text{otherwise}
   \end{cases}
 $$
@@ -72,7 +73,7 @@ $$
 To avoid recomputation, we store computed values:
 
 $$
-  \bar{V}(i, W) := V^* (i, W) \hspace{10pt} \text{once it has been evaluated}
+  \bar{V}(i, W) := V^* (i, W) \quad \text{once it has been evaluated}
 $$
 
 ### ✅ $\chi(i, W)$ - Indicator function
@@ -93,5 +94,5 @@ $$
 The original problem "maximize total value" is solved by computing:
 
 $$ 
-  V^* (|val|, W) 
+  V^* (n, W) 
 $$
