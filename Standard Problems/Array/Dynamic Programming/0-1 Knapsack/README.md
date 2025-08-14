@@ -85,3 +85,13 @@ $$
   false, & \text{otherwise}
   \end{cases}
 $$
+
+##
+
+#### Final Problem
+
+The original problem "maximize total value" is solved by computing:
+
+$$ 
+  V^* (|val|, W) 
+$$
