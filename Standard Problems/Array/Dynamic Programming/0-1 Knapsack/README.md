@@ -1,10 +1,14 @@
 # 0-1 Knapsack Solution
 
 📝 **Given:**
-- **$n$** be the number of items.
 - **$W$** be the knapsack capacity.
 - **$val[i]$** be the value of item $i$.
-- **$wt[i]$** be the weight of item $i$.
+- **$wt[i]$** be the weight of item $i$.  
+
+where:
+  -  $2 \leq |val| = |wt| \leq 10^3$
+  -  $1 \leq W \leq 10^3$
+  -  $1 \leq val[i], wt[i] \leq 10^3$
 
 <br>
 
@@ -13,13 +17,13 @@
 The objective is to maximize total value:
 
 $$
-\text{maximize } \sum_{i=1}^{n} val[i] x_i
+\text{maximize } \sum_{i=1}^{|val|} val[i] x_i
 $$
 
 $$
 \begin{aligned}
 \text{such that: } &
-\sum_{i=1}^{n} wt[i] x_i \le W, \quad x_i \in \lbrace 0, 1 \rbrace, \quad \forall i = 1,2,\dots,n
+\sum_{i=1}^{|wt|} wt[i] x_i \le W, \quad x_i \in \lbrace 0, 1 \rbrace, \quad \forall i = 1,2,\dots,|wt|
 \end{aligned}
 $$
 
