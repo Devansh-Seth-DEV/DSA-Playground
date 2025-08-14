@@ -6,7 +6,7 @@
 
 where:
   -  $1 \leq n \leq 200$
-  -  $1 \leq v_i \leq 10^4 \quad \forall i$
+  -  $1 \leq v_i \leq 200 \quad \forall i$
   -  $1 \leq T \leq 10^4$
 
 <br>
