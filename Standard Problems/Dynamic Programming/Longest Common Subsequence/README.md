@@ -29,7 +29,7 @@ The length of the longest common subsequence between prefixes $\omega_1[1 \dots 
 $$
   V^* (i, j) :=
   \begin{cases}
-  0, & i = 0 \ \lor \ j = 0 \\
+  0, & i \notin \lbrace 1,2,\dots,n \rbrace \ \lor \ j \notin \lbrace 1,2,\dots,m \rbrace \\
   1 + V^* (i-1, j-1), & \omega_1[i] = \omega_2[j] \\
   \max \Big( V^* (i-1, j), \ V^*(i, j-1) \Big), & otherwise
   \end{cases}
