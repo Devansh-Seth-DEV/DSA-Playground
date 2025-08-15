@@ -6,11 +6,6 @@ using namespace std;
         t   (test cases)
         arr[1], arr[2], ..., arr[n]
         sum     (target)
-        
-    Constraints:
-        1 ≤ n ≤ 200
-        1 ≤ arr[i] ≤ 200
-        1 ≤ sum ≤ 10⁴
 */
 
 class Solution {
