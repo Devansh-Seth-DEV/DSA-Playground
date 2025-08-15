@@ -37,20 +37,20 @@ $$
 
 ##
 
-### 💾 $\bar{V}(i, j)$ - Memoization Vector 
+### 💾 $\psi(i, j)$ - Memoization Vector 
 To avoid recomputation, we store computed values:
 
 $$
-  \bar{V}(i, j) := V^* (i, j) \quad \text{once it has been evaluated}
+  \psi(i, j) := V^* (i, j) \quad \text{once it has been evaluated}
 $$
 
 ### ✅ $\chi(i, j)$ - Indicator function
-We define a boolean function $\chi(i, j)$ to track whether $\bar{V}(i, j)$ has already been computed:
+We define a boolean function $\chi(i, j)$ to track whether $\psi(i, j)$ has already been computed:
 
 $$
   \chi(i, j) := 
   \begin{cases}
-  true,  & \bar{V}(i, j) \text{ is already computed} \\
+  true,  & \psi(i, j) \text{ is already computed} \\
   false, & \text{otherwise}
   \end{cases}
 $$
