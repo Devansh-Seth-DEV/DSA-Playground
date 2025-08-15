@@ -31,7 +31,7 @@ $$
   \begin{cases}
   0, & i \notin \lbrace 1,2,\dots,n \rbrace \ \lor \ j \notin \lbrace 1,2,\dots,m \rbrace \\
   1 + V^* (i-1, j-1), & \omega_1[i] = \omega_2[j] \\
-  \max \Big( V^* (i-1, j), \ V^*(i, j-1) \Big), & otherwise
+  \max \Big( V^* (i-1, j), \ V^*(i, j-1) \Big), & \text{otherwise}
   \end{cases}
 $$
 
