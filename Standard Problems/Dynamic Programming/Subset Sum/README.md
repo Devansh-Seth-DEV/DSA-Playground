@@ -38,20 +38,20 @@ $$
 
 ##
 
-### 💾 $\bar{V}(i, W)$ - Memoization Vector 
+### 💾 $\bar{V}(i, T)$ - Memoization Vector 
 To avoid recomputation, we store computed values:
 
 $$
-  \bar{V}(i, W) := F(i, T) \quad \text{once it has been evaluated}
+  \bar{V}(i, T) := F(i, T) \quad \text{once it has been evaluated}
 $$
 
-### ✅ $\chi(i, W)$ - Indicator function
-We define a boolean function $\chi(i, W)$ to track whether $\bar{V}(i, W)$ has already been computed:
+### ✅ $\chi(i, T)$ - Indicator function
+We define a boolean function $\chi(i, T)$ to track whether $\bar{V}(i, T)$ has already been computed:
 
 $$
-  \chi(i, W) := 
+  \chi(i, T) := 
   \begin{cases}
-  true,  & \bar{V} (i, W) \text{ is already computed} \\
+  true,  & \bar{V} (i, T) \text{ is already computed} \\
   false, & \text{otherwise}
   \end{cases}
 $$
