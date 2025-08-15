@@ -27,7 +27,7 @@ where $\delta(x, y)$ denotes the number of paths from $(x, y)$ to $(m-1, n-1)$.
 
 ##
 
-### 🔹$\Gamma(x, y)$ - Successor Function
+### 🔹 $\Gamma(x, y)$ - Successor Function
 The set of valid moves from $(x, y)$:
 
 $$
