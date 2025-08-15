@@ -7,11 +7,6 @@ using namespace std;
         W   (knapsack capacity)
         val[1], val[2], ..., val[n]
         wt[1], wt[2], ..., wt[n]
-	    
-    Constraints:
-        2 ≤ |val| = |wt| ≤ 10³
-        1 ≤ W ≤ 10³
-        1 ≤ val[i], wt[i] ≤ 10³
 */
 
 class Solution {
