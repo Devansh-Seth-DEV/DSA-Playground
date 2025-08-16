@@ -41,7 +41,7 @@ $$
 <br>
 
 # Brute Force Approach
-> Note: Give Time Limit Exceed Error
+> Note: For some inputs can give Time Limit Exceed Error
 
 
 ## 🔹Intermediate Functions
