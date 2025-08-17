@@ -62,7 +62,8 @@ $$
 
 
 ## ⚡ $V^* (i,j)$ - Optimal Value Function
-Denotes the **minimum number of edit operations** needed to convert string $s$ of length $n$, into $t$ of length $m$
+Denotes the **minimum number of edit operations** needed to convert string $s$ of length $n$, into $t$ of length $m$.
+
 Defined as:
 
 $$
