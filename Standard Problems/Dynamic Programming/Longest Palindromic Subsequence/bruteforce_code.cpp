@@ -55,7 +55,8 @@ class Solution {
                           { w[S U {k}], Ψ      ≠ ∅ and k > max(S)
                                          p,q,S
     */
-    string w;
+    const char* w;
+	int n;
     
     /*        
         Let, π( Ψ      ) be the length function, defined as:
@@ -114,7 +115,7 @@ class Solution {
     */                              
     int V_star(string& psi_pqS, int k) {
         if(k==0) return 0;
-        if(k > w.length()) return pi(psi_pqS);
+        if(k > n) return pi(psi_pqS);
         
         /*  (k)
            Ψ
@@ -128,7 +129,9 @@ class Solution {
 public:
     
     int longestPalinSubseq(string &s) {
-        w = s;
+        w = s.c_str();
+		n = s.length();
+		
         string psi_pqS = "";
         
         // V*(∅, 1) will give the longest palindromic subsequence length
