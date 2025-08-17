@@ -60,7 +60,7 @@ $$
 We define a boolean function $\chi(i)$ to track whether $\bar{V}(i)$ has already been computed:
 
 $$
-  \chi(i, j) := 
+  \chi(i) := 
   \begin{cases}
   true,  & \bar{V} (i) \text{ is already computed} \\
   false, & \text{otherwise}
