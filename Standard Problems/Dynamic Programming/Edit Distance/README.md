@@ -37,6 +37,8 @@ $$
 \text{Find:} \quad \min \Big\lbrace k \in ℕ \mid \exists \omega_0, \dots, \omega_k \in \Sigma^\* \ : \ \omega_0 = s, \ \omega_k = t, \ \omega_i \sim \omega_{i-1}, \ \forall i \in [1,k] \Big\rbrace
 $$
 
+where $\sim$ denotes being “one edit apart”.
+
 <br>
 
 
