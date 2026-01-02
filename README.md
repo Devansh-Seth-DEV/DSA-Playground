@@ -1,6 +1,10 @@
 # 🚀 DSA-Playground
 
-<p align="left"> <img src="https://img.shields.io/badge/Language-C++-blue?style=for-the-badge&logo=cplusplus" alt="C++"> <img src="https://img.shields.io/badge/Data_Structures-Library-orange?style=for-the-badge" alt="DSA"> <img src="https://img.shields.io/badge/Algorithms-Practiced-success?style=for-the-badge" alt="Algorithms"> </p>
+<p align="left"> 
+   <img src="https://img.shields.io/badge/Language-C++-blue?style=for-the-badge&logo=cplusplus" alt="C++"> 
+   <img src="https://img.shields.io/badge/Data_Structures-Library-orange?style=for-the-badge" alt="DSA"> 
+   <img src="https://img.shields.io/badge/Algorithms-Practiced-success?style=for-the-badge" alt="Algorithms"> 
+</p>
 
 A high-performance laboratory for mastering Data Structures and Algorithms. This repository features industrial-grade templates, optimized competitive programming solutions, and structured implementations.
 
@@ -105,3 +109,4 @@ tree.insert(25);      // Inserts 25 and splays it to the root
 bool found = tree.contains(20); // Moves 20 to the root if found
 tree.erase(30);       // Removes 30 and restructures optimally
 ```
+
