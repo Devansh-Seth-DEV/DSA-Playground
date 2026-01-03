@@ -1,9 +1,19 @@
 # 🚀 DSA-Playground
 
-<p align="left"> 
-   <img src="https://img.shields.io/badge/Language-C++-blue?style=for-the-badge&logo=cplusplus" alt="C++"> 
-   <img src="https://img.shields.io/badge/Data_Structures-Library-orange?style=for-the-badge" alt="DSA"> 
-   <img src="https://img.shields.io/badge/Algorithms-Practiced-success?style=for-the-badge" alt="Algorithms"> 
+<p align="left">
+   <img src="https://img.shields.io/badge/Laboratory-DSA--Playground-00b4d8?style=for-the-badge&logo=rocket&logoColor=white" alt="Repo Name">
+   &nbsp;
+   <img src="https://img.shields.io/badge/Core-C%2B%2B17-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" alt="C++17">
+   &nbsp;
+   <img src="https://img.shields.io/badge/Engine-Optimized-success?style=for-the-badge&logo=cpu&logoColor=white" alt="Optimized Engine">
+   &nbsp;
+   <img src="https://img.shields.io/badge/Architecture-Triple--Layer-blueviolet?style=for-the-badge" alt="Architecture">
+   &nbsp;
+   <img src="https://img.shields.io/badge/Layout-vEB--Optimized-ffca28?style=for-the-badge&logoColor=black" alt="vEB Layout">
+   &nbsp;
+   <img src="https://img.shields.io/badge/Status-In_Development-brightgreen?style=for-the-badge" alt="Status"/>
+   &nbsp;
+   <img src="https://img.shields.io/badge/Platform-Codeforces-445f9d?style=for-the-badge&logo=codeforces&logoColor=white" alt="Platforms"/>
 </p>
 
 A high-performance laboratory for mastering Data Structures and Algorithms. This repository features industrial-grade templates, optimized competitive programming solutions, and structured implementations.
@@ -51,6 +61,73 @@ A high-performance laboratory for mastering Data Structures and Algorithms. This
       </td>
    </tr>
 </table>
+
+## 📜 Competitive Programming Template
+To maintain high performance and code clarity, all competitive programming solutions in this repository utilize a **Triple-Layer Architecture**. This decouples I/O stream synchronization from the core algorithmic logic.
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+/**
+ * @brief Optimizes C++ I/O operations by desyncing with 
+ *        stdio and untying cin from cout.
+ */
+inline void fastIO() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+}
+
+class Solver {
+public:
+    /** @brief Entry point for handling multiple test cases. */
+    static void execute() {
+        int testCases = 1;
+        // Comment this out for single test case problems
+        if (!(cin >> testCases)) return;
+        
+        while(testCases--) solve();
+    }
+
+    /**
+     * @brief Interface Layer: Handles data ingestion and output dispatch.
+     */
+    static void solve() {
+        // 1. Ingest input parameters
+        int n;
+        if (!(cin >> n)) return;
+
+        // 2. Execute computational logic
+        auto result = process(n);
+
+        // 3. Dispatch result to output stream
+        cout << result << "\n";
+    }
+
+    /**
+     * @brief Engine Layer: Pure logic for a single test case unit.
+     * @param n Input parameter (Update signature as per problem)
+     * @return Processed result (Update return-type as per problem)
+     */
+    static int process(int n) {
+        int result = 0;
+        
+        // --- Implementation Logic Start ---
+        
+        // --- Implementation Logic End ---
+        
+        return result;
+    }
+};
+
+int main() {
+    fastIO();
+    Solver::execute();
+    return 0;
+}
+```
+
 
 ## 🛠️ Implementation Deep-Dive
 
@@ -109,4 +186,5 @@ tree.insert(25);      // Inserts 25 and splays it to the root
 bool found = tree.contains(20); // Moves 20 to the root if found
 tree.erase(30);       // Removes 30 and restructures optimally
 ```
+
 
