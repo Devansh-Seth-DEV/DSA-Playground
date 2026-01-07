@@ -1,0 +1,29 @@
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# C / C++
+*.o
+*.out
+*.exe
+
+# Java
+*.class
+*.jar
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+env/
+
+# Node
+node_modules/
+
+# Local test files
+input.txt
+output.txt
+test.txt
