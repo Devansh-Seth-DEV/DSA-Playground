@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CP: Build & Run Bash",
+      "type": "process",
+      "command": "D:\\msys64\\usr\\bin\\bash.exe",
+      "args": [
+        "--login",
+        "-c",
+        "./.vscode/cp_run.sh '${file}'"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+            "CHERE_INVOKING": "1",
+            "MSYSTEM": "UCRT64"
+        }
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true,
+        "focus": false,
+        "showReuseMessage": false
+      }
+    }
+  ]
+}

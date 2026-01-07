@@ -1,8 +1,12 @@
 # VS Code
-.vscode/
+.vscode/*
+!.vscode/cp_run.sh
+!.vscode/tasks.json
 
 # Build
-build/
+build/*
+!build/input.txt
+!build/output.txt
 
 # OS
 .DS_Store
@@ -22,11 +26,3 @@ __pycache__/
 *.pyc
 .venv/
 env/
-
-# Node
-node_modules/
-
-# Local test files
-input.txt
-output.txt
-test.txt
