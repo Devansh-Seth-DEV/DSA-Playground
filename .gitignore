@@ -1,6 +1,9 @@
 # VS Code
 .vscode/
 
+# Build
+build/
+
 # OS
 .DS_Store
 Thumbs.db
