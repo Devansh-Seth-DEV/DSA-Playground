@@ -106,7 +106,9 @@ public:
      */
     void print(const vector<bool>& vec,
                const char* end="\n") {
-        for (bool b : vec) print(b, " ");
+        for (size_t i = 0; i < vec.size(); ++i)
+            print(vec[i], 
+                  i+1 < vec.size() ? " " : "");
         cout << end;
     }
     
@@ -200,7 +202,7 @@ public:
      */
     int process(int n) {
         int result = 0;
-                
+                        
         // --- Implementation Logic Start ---
         
         // --- Implementation Logic End ---
