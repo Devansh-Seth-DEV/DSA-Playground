@@ -2,6 +2,7 @@
 .vscode/*
 !.vscode/cp_run.sh
 !.vscode/tasks.json
+!.vscode/cpp.code-snippets
 
 # Build
 build/*
@@ -26,3 +27,6 @@ __pycache__/
 *.pyc
 .venv/
 env/
+
+# Competetive Programming Helper Tool
+**/.cph/
