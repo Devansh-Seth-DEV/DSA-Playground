@@ -163,6 +163,41 @@ public:
         cout << end;
     }
 
+
+    /**
+     * @brief Prints a std::pair.
+     *
+     * The elements of the pair are printed sequentially:
+     *  - First element
+     *  - A single space separator
+     *  - Second element
+     *
+     * Both elements are printed recursively using the appropriate
+     * `print()` overload, allowing support for nested types such as
+     * vectors, arrays, or other pairs.
+     *
+     * Example output:
+     *  - pair<int, int>        -> "1 2"
+     *  - pair<int, string>     -> "5 hello"
+     *  - pair<int, vector<int>> -> "3 1 2 3"
+     *
+     * @tparam X Type of the first element
+     * @tparam Y Type of the second element
+     * @param p Pair to print
+     * @param end Output terminator (default: newline)
+     *
+     * @note Formatting is space-separated without surrounding
+     *       parentheses, matching common competitive programming
+     *       output conventions.
+     *
+     * @note The output terminator is applied only after the second
+     *       element, ensuring no extra whitespace.
+     */
+    template <typename X, typename Y>
+    void print(const pair<X, Y>& p, const char* end = "\n") {
+        print(p.first, " ");
+        print(p.second, end);
+    }
 };
 
 

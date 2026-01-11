@@ -1,0 +1,116 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+inline void fastIO() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+}
+
+class Printer {
+public:
+    template <typename T>
+    void print(const T& val, const char* end = "\n") {
+        cout << val << end;
+    }
+
+    void print(bool val, const char* end = "\n") {
+        cout << (val ? "YES" : "NO") << end;
+    }
+
+    void print(const char* s, const char* end = "\n") {
+        cout << s << end;
+    }
+
+    void print(const string& s, const char* end = "\n") {
+        cout << s << end;
+    }
+
+    template <typename T>
+    void print(const vector<T>& vec, const char* end = "\n") {
+        for (size_t i = 0; i < vec.size(); ++i)
+            print(vec[i], i + 1 < vec.size() ? " " : "");
+        cout << end;
+    }
+
+    void print(const vector<bool>& vec, const char* end = "\n") {
+        for (size_t i = 0; i < vec.size(); ++i)
+            print(vec[i], i + 1 < vec.size() ? " " : "");
+        cout << end;
+    }
+
+    template <typename T, size_t N>
+    void print(const T (&arr)[N], const char* end = "\n") {
+        for (size_t i = 0; i < N; ++i)
+            print(arr[i], i + 1 < N ? " " : "");
+        cout << end;
+    }
+
+    template <size_t N>
+    void print(const char (&arr)[N], const char* end = "\n") {
+        for (size_t i = 0; i < N; ++i)
+            print(arr[i], i + 1 < N ? " " : "");
+        cout << end;
+    }
+
+    template <typename X, typename Y>
+    void print(const pair<X, Y>& p, const char* end = "\n") {
+        print(p.first, " ");
+        print(p.second, end);
+    }
+};
+
+class Solver {
+private:
+    Printer printer;
+
+public:
+    void execute() {
+        int testCases = 1;
+        cin >> testCases;
+        while (testCases--) solve();
+    }
+
+    void solve() {
+        int n;
+        cin >> n;
+
+        vector<int> arrA(n);
+        for(int& a: arrA) cin >> a;
+
+        vector<int> arrB, arrC;
+        auto result = process(arrA, arrB, arrC);
+
+        int lb = result.first;
+        int lc = result.second;
+
+        if (lb==0) printer.print(-1);
+        else {
+            printer.print(result);
+            printer.print(arrB);
+            printer.print(arrC);
+        }
+    }
+
+    pair<int, int> process(const vector<int>& arrA,
+                           vector<int>& arrB,
+                           vector<int>& arrC) {
+        pair<int, int> result;
+
+        int maxA = *max_element(arrA.begin(), arrA.end());
+        for(const int& ele: arrA) {
+            if (ele == maxA) arrC.push_back(ele);
+            else arrB.push_back(ele);
+        }
+
+        result = {arrB.size(), arrC.size()};
+        return result;
+    }
+};
+
+int main() {
+    fastIO();
+    Solver solver;
+    solver.execute();
+    return 0;
+}
