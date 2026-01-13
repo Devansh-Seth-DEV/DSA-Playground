@@ -12,6 +12,16 @@ inline void fastIO() {
 }
 
 /**
+ * @brief Checks whether the given value is even or not
+ * 
+ * @param val The value to be check
+ * @return Returns true if given value is even, otherwise false.
+ */
+inline bool iseven(long long val) {
+    return (val&1)==0;
+}
+
+/**
  * @brief Generic output utility for competitive programming.
  *
  * The Printer class provides a unified interface for printing

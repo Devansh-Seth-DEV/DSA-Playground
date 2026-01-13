@@ -4,6 +4,9 @@
 !.vscode/tasks.json
 !.vscode/cpp.code-snippets
 
+# workspace files
+*.code-workspace
+
 # Build
 build/*
 !build/input.txt
