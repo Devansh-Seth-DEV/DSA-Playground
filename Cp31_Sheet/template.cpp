@@ -22,6 +22,17 @@ inline bool iseven(long long val) {
 }
 
 /**
+ * @brief Compares and tells whether both the number has same parity or not.
+ * 
+ * @param a First number to check parity of
+ * @param b Second number to check parity of
+ * @return Returns true if both numbers have same parity, otherwise false.
+ */
+inline bool isSameParity(long long a, long long b) {
+    return iseven(a) == iseven(b);
+}
+
+/**
  * @brief Generic output utility for competitive programming.
  *
  * The Printer class provides a unified interface for printing
