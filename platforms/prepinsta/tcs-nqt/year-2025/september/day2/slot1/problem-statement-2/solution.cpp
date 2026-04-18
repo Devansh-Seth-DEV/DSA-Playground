@@ -185,15 +185,11 @@ public:
      */
     void solve() {
         // 1. Ingest input parameters
-        string day;
-        cin >> day;
-        cin.ignore();
-        
         int n;
         cin >> n;
  
         // 2. Execute computational logic
-        auto result = process(day, n);
+        auto result = process(n);
  
         // 3. Dispatch result to output stream
         printer.print(result);
@@ -204,29 +200,17 @@ public:
      * @param n Input parameter (Update signature as per problem)
      * @return Processed result (Update return-type as per problem)
      */
-    int process(string& day, int n) {
-        int dayValue = getDayValue(day);
-        string enjoyDay = "sun";
-        int totalSundays = 0;
+    int process(int n) {
+        int result = 1;
         
-        n -= getDayValue(enjoyDay) - dayValue;
-        if (n>=0) totalSundays++;
+        int x = n;
+        while (x != 0) {
+            int digit = x%10;
+            result *= (digit == 0) ? 1 : digit;
+            x /= 10;
+        }
         
-        totalSundays += n/7;
-        
-        int result = totalSundays;
-        return result ;
-    }
-    
-    
-    int getDayValue(string day) {
-        if (day == "mon") return 0;
-        if (day == "tue") return 1;
-        if (day == "wed") return 2;
-        if (day == "thu") return 3;
-        if (day == "fri") return 4;
-        if (day == "sat") return 5;
-        return 6;
+        return result;
     }
 };
 

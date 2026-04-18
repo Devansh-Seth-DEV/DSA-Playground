@@ -185,15 +185,16 @@ public:
      */
     void solve() {
         // 1. Ingest input parameters
-        string day;
-        cin >> day;
-        cin.ignore();
-        
         int n;
         cin >> n;
+        
+        vector<int> arr;
+        arr.resize(n);
+        
+        for(int& a: arr) cin >> a;
  
         // 2. Execute computational logic
-        auto result = process(day, n);
+        auto result = process(n, arr);
  
         // 3. Dispatch result to output stream
         printer.print(result);
@@ -204,29 +205,18 @@ public:
      * @param n Input parameter (Update signature as per problem)
      * @return Processed result (Update return-type as per problem)
      */
-    int process(string& day, int n) {
-        int dayValue = getDayValue(day);
-        string enjoyDay = "sun";
-        int totalSundays = 0;
+    int process(int n, vector<int>& arr) {
+        int result = 1;
+        int currMax = arr[0];
         
-        n -= getDayValue(enjoyDay) - dayValue;
-        if (n>=0) totalSundays++;
+        for(int i=1; i<n; i++) {
+            if (arr[i] > currMax) {
+                result++;
+                currMax = arr[i];
+            }
+        }
         
-        totalSundays += n/7;
-        
-        int result = totalSundays;
-        return result ;
-    }
-    
-    
-    int getDayValue(string day) {
-        if (day == "mon") return 0;
-        if (day == "tue") return 1;
-        if (day == "wed") return 2;
-        if (day == "thu") return 3;
-        if (day == "fri") return 4;
-        if (day == "sat") return 5;
-        return 6;
+        return result;
     }
 };
 
